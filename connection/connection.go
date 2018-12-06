@@ -1,8 +1,9 @@
 package connection
 
 import (
-	"log"
 	"errors"
+	"log"
+	"time"
 
 	"github.com/arturoverbel/microservice_compra/model"
 	mgo "gopkg.in/mgo.v2"
@@ -12,14 +13,21 @@ import (
 //Repository ...
 type Repository struct{}
 
-// SERVER the DB server
-const SERVER = "localhost:27017"
+// INFO - to connect mongo
+var INFO = &mgo.DialInfo{
+	Addrs:    []string{"127.0.0.1:27017"},
+	Timeout:  60 * time.Second,
+	Database: "cool_db",
+	Username: "admin",
+	Password: "secret_password",
+}
 
 // DBNAME the name of the DB instance
-const DBNAME = "pos"
+const DBNAME = "cool_db"
 
 // DOCNAME the name of the document
 const DOCNAME = "shoppings"
+
 var db *mgo.Database
 
 // COLLECTION - name collection on Mongo
@@ -29,7 +37,7 @@ const (
 
 // Insert - Insert a Shopping
 func Insert(shopping model.Shopping) error {
-	session, err := mgo.Dial(SERVER)
+	session, err := mgo.DialWithInfo(INFO)
 	defer session.Close()
 
 	shopping.ID = bson.NewObjectId()
@@ -50,7 +58,7 @@ func FindByID(id string) (model.Shopping, error) {
 		return shopping, err
 	}
 
-	session, err := mgo.Dial(SERVER)
+	session, err := mgo.DialWithInfo(INFO)
 	if err != nil {
 		log.Fatal(err)
 		return shopping, err
@@ -65,12 +73,12 @@ func FindByID(id string) (model.Shopping, error) {
 
 // Update - ..
 func Update(shopping model.Shopping) error {
-	session, err := mgo.Dial(SERVER)
+	session, err := mgo.DialWithInfo(INFO)
 	if err != nil {
 		log.Fatal(err)
 		return err
 	}
- 	defer session.Close()
+	defer session.Close()
 	c := session.DB(DBNAME).C(DOCNAME)
 	err = c.UpdateId(shopping.ID, &shopping)
 	return err
@@ -79,7 +87,7 @@ func Update(shopping model.Shopping) error {
 // FindByUser - ...
 func FindByUser(idUser int) ([]model.Shopping, error) {
 	var shoppings []model.Shopping
-	session, err := mgo.Dial(SERVER)
+	session, err := mgo.DialWithInfo(INFO)
 	if err != nil {
 		log.Fatal(err)
 		return shoppings, err
@@ -97,12 +105,12 @@ func Delete(id string) error {
 		err := errors.New("Invalid ID")
 		return err
 	}
-	session, err := mgo.Dial(SERVER)
+	session, err := mgo.DialWithInfo(INFO)
 	if err != nil {
 		log.Fatal(err)
 		return err
 	}
- 	defer session.Close()
+	defer session.Close()
 	c := session.DB(DBNAME).C(DOCNAME)
 
 	oid := bson.ObjectIdHex(id)

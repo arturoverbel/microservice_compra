@@ -17,9 +17,9 @@ type Repository struct{}
 var INFO = &mgo.DialInfo{
 	Addrs:    []string{"127.0.0.1:27017"},
 	Timeout:  60 * time.Second,
-	Database: "cool_db",
+	Database: "admin",
 	Username: "admin",
-	Password: "secret_password",
+	Password: "admin",
 }
 
 // DBNAME the name of the DB instance
@@ -38,6 +38,10 @@ const (
 // Insert - Insert a Shopping
 func Insert(shopping model.Shopping) error {
 	session, err := mgo.DialWithInfo(INFO)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
 	defer session.Close()
 
 	shopping.ID = bson.NewObjectId()

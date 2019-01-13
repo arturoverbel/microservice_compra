@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "0016fede-b0a0-40a0-b8df-b67968bdfb11",
+		"name": "Microservice Compra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Find Shopping By User ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compra/by-user/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compra",
+						"by-user",
+						"1"
+					]
+				},
+				"description": "Devuelve las compras dado el ID de un usuario"
+			},
+			"response": [
+				{
+					"id": "1ebaf566-5da9-4365-9b98-c8ebd98fa607",
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://34.229.244.130/api/compra/by-user/1",
+							"protocol": "http",
+							"host": [
+								"34",
+								"229",
+								"244",
+								"130"
+							],
+							"path": [
+								"api",
+								"compra",
+								"by-user",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "97",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 07 Dec 2018 04:36:58 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"body": "[{\"id\":\"5c09f88fbc6b7000061c9e4e\",\"user\":1,\"products\":[\"1\"],\"payment\":\"Cash\",\"price_total\":2000}]"
+				}
+			]
+		},
+		{
+			"name": "Find Shopping By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compra/5c09514a2795dc6de7caf3eb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compra",
+						"5c09514a2795dc6de7caf3eb"
+					]
+				},
+				"description": "Devuelve una compra por su ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Shopping",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\": 1,\n\t\"products\": [\"1\"],\n\t\"payment\": \"Cash\",\n\t\"price_total\": 20\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compra",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compra"
+					]
+				},
+				"description": "Ingresa una compra"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Shopping",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5c09f88fbc6b7000061c9e4e\",\n    \"user\": 1,\n    \"products\": [\n        \"1\"\n    ],\n    \"payment\": \"Cash\",\n    \"price_total\": 2000\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compra",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compra"
+					]
+				},
+				"description": "Modifica los datos de una compra"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Shopping",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5c08952e2795dc48ed191312\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compra",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compra"
+					]
+				},
+				"description": "Elimina una compra"
+			},
+			"response": [
+				{
+					"id": "4b1c3978-bcab-477e-b858-16fefeefe4ce",
+					"name": "Delete Shopping",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"5c08952e2795dc48ed191312\"\n}"
+						},
+						"url": {
+							"raw": "http://34.229.244.130/api/compra",
+							"protocol": "http",
+							"host": [
+								"34",
+								"229",
+								"244",
+								"130"
+							],
+							"path": [
+								"api",
+								"compra"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}
